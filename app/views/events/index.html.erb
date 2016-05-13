@@ -7,9 +7,10 @@
 			<%= link_to event.name, event_path(event), :class => "btn btn-primary" %>
 		</td>
 		<td>
+			<%= link_to "Show", event_path(event), :class => "btn btn-default" %>
+			<%= link_to "Attendee List", event_attendees_path(event), :class => "btn btn-primary" %>
 			<%= link_to " (XML)", event_path(event, :format => :xml), :class => "btn btn-default" %>
 			<%= link_to " (JSON)", event_path(event, :format => :json), :class => "btn btn-default" %>
-			<%= link_to "Show", event_path(event), :class => "btn btn-default" %>
 			<%= link_to "Edit", edit_event_path(event), :class => "btn btn-default" %>
 			<%= link_to "Delete", event_path(event), method: :delete, data: {confirm: 'Are you sure?'}, :class => "btn btn-danger" %>
 		</td>

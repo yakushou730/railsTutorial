@@ -82,7 +82,7 @@ class EventsController < ApplicationController
 	end
 
 	def event_params
-		params.require(:event).permit(:name, :description)
+		params.require(:event).permit(:name, :description, :start_time)
 	end
 
 	def prepare_variable_for_index_template

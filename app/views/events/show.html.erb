@@ -1,6 +1,7 @@
 <h2><%= @event.name %></h2>
-<% Rails.logger.debug("***DEBUG*** #{@event.inspect}") %>
+<%# Rails.logger.debug("***DEBUG*** #{@event.inspect}") %>
 <!-- Simple format is used for auto <br> on HTML -->
 <p><%= simple_format @event.description %></p>
+<p><%= @event.start_time %></p>
 
 <p><%= link_to 'Back to index', events_path %></p>

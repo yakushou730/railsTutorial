@@ -3,7 +3,14 @@ class EventsController < ApplicationController
 	before_action :set_event, :only => [:show, :edit, :update, :destroy]
 
 	def index
-		@events = Event.page(params[:page]).per(10)
+
+		if params[:eid]
+			@event = Event.find(params[:eid])
+		else
+			@event = Event.new
+		end
+
+		prepare_variable_for_index_template
 
 		respond_to do |format|
 			format.html	#index.html.erb
@@ -26,7 +33,9 @@ class EventsController < ApplicationController
 
 			redirect_to events_url
 		else
-			render 'new'
+			prepare_variable_for_index_template
+
+			render :action => :index
 		end
 	end
 
@@ -41,7 +50,7 @@ class EventsController < ApplicationController
 	end
 
 	def edit
-		
+
 	end
 
 	def update
@@ -49,17 +58,19 @@ class EventsController < ApplicationController
 
 			flash[:notice] = "update success"
 
-			redirect_to event_url(@event)
+			redirect_to events_url
 		else
-			render 'edit'
+			prepare_variable_for_index_template
+
+			render :action => :index
 		end
 
-		
+
 	end
 
-	def destroy	
+	def destroy
 		@event.destroy
-		
+
 		flash[:alert] = "delete success"
 
 		redirect_to events_url
@@ -72,5 +83,9 @@ class EventsController < ApplicationController
 
 	def event_params
 		params.require(:event).permit(:name, :description)
+	end
+
+	def prepare_variable_for_index_template
+		@events = Event.page(params[:page]).per(10)
 	end
 end

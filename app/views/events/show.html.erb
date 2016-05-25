@@ -1,4 +1,6 @@
 <h2><%= @event.name %></h2>
+
+<p><%= @event.category.try(:name) %></p>
 <%# Rails.logger.debug("***DEBUG*** #{@event.inspect}") %>
 <!-- Simple format is used for auto <br> on HTML -->
 <p><%= simple_format @event.description %></p>

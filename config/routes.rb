@@ -9,6 +9,10 @@ Rails.application.routes.draw do
       get :latest
       post :bulk_update
     end
+
+    member do
+      get :dashboard
+    end
   end
 
   get '/welcome/say_hello' => 'welcome#say'

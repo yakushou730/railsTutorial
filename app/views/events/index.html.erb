@@ -1,5 +1,9 @@
 <h1>Events list</h1>
 
+<p>
+	<%= link_to "Latest events", latest_events_path, :class => "btn btn-primary" %>
+</p>
+
 <%= form_for @event do |f| %>
 
 	<%= render :partial => "form", :locals => {:f => f} %>
@@ -8,10 +12,15 @@
 
 <% end %>
 
+<%= form_tag bulk_update_events_path do  %>
+
 <table class="table">
 <% @events.each do |event| %>
 	<tr>
 		<td>
+
+			<%= check_box_tag "ids[]", event.id, false %>
+
 			<%= link_to event.name, event_path(event), :class => "btn btn-primary" %>
 		</td>
 		<td>
@@ -27,6 +36,13 @@
 <% end %>
 </table>
 
+	<%= submit_tag "Delete" %>
+	<%= submit_tag "Publish" %>
+<% end %>
+
 <%= link_to 'New Event', events_path, :class => "btn btn-primary" %>
 <!--<%= link_to 'Atom feed', events_path(:format => :atom) %>-->
+
+<%#= button_to "Delete All", bulk_delete_events_path, :method => :post, :class => "btn btn-danger" %>
+
 <%= paginate @events %>

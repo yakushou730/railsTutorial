@@ -39,6 +39,25 @@ class EventsController < ApplicationController
 		end
 	end
 
+	# GET /events/latest
+	def latest
+		@events = Event.order("id DESC").limit(3)
+	end
+
+	#POST /events/bulk_update
+	def bulk_update
+		ids = Array(params[:ids])
+		events = ids.map{|i| Event.find_by_id(i)}.compact
+
+		if params[:commit] == "Delete"
+			events.each {|e| e.destroy}
+		elsif params[:commit] == "Publish"
+			events.each {|e| e.update(:status => "published")}
+		end
+
+		redirect_to :back
+	end
+
 	def show
 		#@page_title = @event.name
 		@event = Event.find(params[:id])
@@ -82,7 +101,7 @@ class EventsController < ApplicationController
 	end
 
 	def event_params
-		params.require(:event).permit(:name, :description, :start_time, :category_id, group_ids: [])
+		params.require(:event).permit(:name, :description, :start_time, :category_id, :status, group_ids: [])
 	end
 
 	def prepare_variable_for_index_template

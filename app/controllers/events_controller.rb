@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
 
+	before_action :authenticate_user!, :except => [:index]
 	before_action :set_event, :only => [:show, :edit, :update, :destroy, :dashboard]
 
 	def index
@@ -26,6 +27,8 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(event_params)
+
+		@event.user = current_user
 
 		if @event.save
 

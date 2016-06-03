@@ -34,6 +34,11 @@
 
 			<%= link_to event.name, event_path(event), :class => "btn btn-primary" %>
 		</td>
+
+		<td>
+			<%= event.user.try(:short_name) %>
+		</td>
+
 		<td>
 			<%= link_to "Show", event_path(event), :class => "btn btn-default" %>
 			<%= link_to "Dashboard", dashboard_event_path(event), :class => "btn btn-default" %>

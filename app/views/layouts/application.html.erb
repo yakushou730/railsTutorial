@@ -11,14 +11,25 @@
 		<div class="row">
 			<div class='col-md-12'>
 				<% if flash[:notice].present? %>
-					<div class="alert alert-success role="alert>
+					<div class="alert alert-success" role="alert">
 						<%= flash[:notice] %>
 					</div>
 				<% end %>
 				<% if flash[:alert].present? %>
-					<div class="alert alert-danger role="alert>
+					<div class="alert alert-danger" role="alert">
 						<%= flash[:alert] %>
 					</div>
+				<% end %>
+
+				<% if current_user %>
+
+					Hi, <%= current_user.email %>
+
+					<%= link_to('log out', destroy_user_session_path, :method => :delete) %> |
+					<%= link_to('change password', edit_registration_path(:user)) %>
+				<% else %>
+					<%= link_to('registration', new_registration_path(:user)) %> |
+					<%= link_to('log in', new_session_path(:user)) %>
 				<% end %>
 
 				<%= yield %>

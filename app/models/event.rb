@@ -7,5 +7,7 @@ class Event < ActiveRecord::Base
 	has_many :groups, through: :event_groupships
 	validates_presence_of :name
 
+  belongs_to :user
+
   #delegate :name, to: :category, prefix: true, allow_nil: true
 end

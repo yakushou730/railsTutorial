@@ -122,6 +122,7 @@ class EventsController < ApplicationController
 			@events = @events.order(sort_by)
 		end
 
-		@events = @events.page(params[:page]).per(10)
+		@events = @events.page(params[:page]).per(5)
+
 	end
 end

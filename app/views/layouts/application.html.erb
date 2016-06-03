@@ -20,7 +20,10 @@
 						<%= flash[:alert] %>
 					</div>
 				<% end %>
+
 				<%= yield %>
+
+				<%= link_to "admin", admin_events_path %>
 			</div>
 		</div>
 	</div>

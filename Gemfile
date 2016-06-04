@@ -38,6 +38,8 @@ gem 'devise'
 
 group :development, :test do
 
+  gem 'faker'
+
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 

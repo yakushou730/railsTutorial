@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
     self.email.split("@").first
   end
 
+  def admin?
+    self.role == "admin"
+  end
 end

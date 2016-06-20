@@ -81,6 +81,10 @@ class EventsController < ApplicationController
 	end
 
 	def update
+		if params[:_remove_avatar] == "1"
+			@event.avatar = nil
+		end
+
 		if @event.update(event_params)
 
 			flash[:notice] = "update success"
@@ -109,7 +113,7 @@ class EventsController < ApplicationController
 	end
 
 	def event_params
-		params.require(:event).permit(:name, :description, :start_time, :category_id, :status, group_ids: [])
+		params.require(:event).permit(:name, :avatar,:description, :start_time, :category_id, :status, group_ids: [])
 	end
 
 	def prepare_variable_for_index_template
@@ -117,7 +121,7 @@ class EventsController < ApplicationController
 		if params[:keyword]
 			@events = Event.where(["name like ?", "%#{params[:keyword]}%"])
 		else
-			@events = Event.all
+			@events = Event.order("id DESC")
 		end
 
 		if params[:order]

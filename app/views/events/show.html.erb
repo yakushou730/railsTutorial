@@ -2,6 +2,13 @@
 
 <p><%= @event.status %></p>
 
+<% if @event.avatar.exists? %>
+  <%= image_tag(@event.avatar.url(:medium)) %>
+<% else %>
+  None
+<% end %>
+
+
 <ul>
   <% @event.groups.each do |group| %>
     <li><%= group.name %></li>

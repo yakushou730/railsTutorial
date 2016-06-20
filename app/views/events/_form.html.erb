@@ -12,6 +12,13 @@
 </div>
 
 <div class="form-group">
+	<%= f.file_field :avatar %>
+	<% if @event.avatar.exists? %>
+		<%= check_box_tag "_remove_avatar", "1" %> Remove Avatar
+	<% end %>
+</div>
+
+<div class="form-group">
 	<%= f.label :status, "Status" %>
 	<%= f.select :status, [["Published", "published"], ["Draft", "draft"]], :class => "form-control" %>
 </div>

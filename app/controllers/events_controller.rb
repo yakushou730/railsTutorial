@@ -124,6 +124,9 @@ class EventsController < ApplicationController
 			@events = Event.order("id DESC")
 		end
 
+		@q = Event.ransack(params[:q])
+		@events = @q.result(distinct: true)
+
 		if params[:order]
 			sort_by = (params[:order] == "name") ? "name" : "id"
 			@events = @events.order(sort_by)

@@ -20,6 +20,14 @@
 	<%= submit_tag "Search" %>
 <% end %>
 
+<br>
+
+<%= search_form_for @q, :url => events_path do |f| %>
+	<%= f.label :name_cont %>
+ 	<%= f.search_field :name_cont %>
+ 	<%= f.submit "Search" %>
+<% end %>
+
 <%= form_tag bulk_update_events_path do  %>
 
 <%= link_to "Sort by Name", events_path(:order => "name") %>
@@ -61,5 +69,8 @@
 <!--<%= link_to 'Atom feed', events_path(:format => :atom) %>-->
 
 <%#= button_to "Delete All", bulk_delete_events_path, :method => :post, :class => "btn btn-danger" %>
+<br>
+	<%= sort_link(@q, :name) %>
+<br>
 
 <%= paginate @events %>

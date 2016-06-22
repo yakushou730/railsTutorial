@@ -11,7 +11,13 @@ class WelcomeController < ApplicationController
 	end
 
   def something
-    render :text => "<h3>AWESOME!!! #{Time.now}</h3>"
+    #render :text => "<h3>AWESOME!!! #{Time.now}</h3>"
+    respond_to do |format|
+      format.html {
+        render :text => "<h3>AWESOME!!! #{Time.now}</h3>"
+      }
+      format.js
+    end
   end
 
 end

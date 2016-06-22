@@ -1,11 +1,28 @@
 <h1>Hello World~!!</h1>
 <p>Author: YakuShou</p>
 
-<h2><%= link_to "load something", "#", :id => "ajax-load" %></h2>
+<h2><%= link_to "jQuery Click", "#", :id => "jquery-load" %></h2>
+
+<div id="content"></div>
+
+<h2><%= link_to "Ajax Test", "#", :id => "ajax-load" %></h2>
+
+
 
 <script>
-  $("#ajax-load").on("click", function(e){
+  $("#jquery-load").on("click", function(e){
     e.preventDefault();
     alert("click!");
   });
+
+  $("#ajax-load").on("click", function(e){
+    e.preventDefault();
+    $.ajax({
+      url: "/something",
+      success: function(data){
+        $("#content").html(data);
+      }
+    });
+  });
+
 </script>

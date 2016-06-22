@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   get '/welcome/say_hello' => 'welcome#say'
   get '/welcome' => 'welcome#index'
+  get '/something' => 'welcome#something'
 
   root 'welcome#index'
 

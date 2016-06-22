@@ -5,9 +5,10 @@
 
 <div id="content"></div>
 
-<h2><%= link_to "Ajax Test", "#", :id => "ajax-load" %></h2>
+<h2><%= link_to "Ajax Test", something_path, :id => "ajax-load" %></h2>
 
 
+<%= link_to "back to welcome", welcome_path %>
 
 <script>
   $("#jquery-load").on("click", function(e){
@@ -17,8 +18,9 @@
 
   $("#ajax-load").on("click", function(e){
     e.preventDefault();
+    var url = $(this).attr("href");
     $.ajax({
-      url: "/something",
+      url: url,
       success: function(data){
         $("#content").html(data);
       }

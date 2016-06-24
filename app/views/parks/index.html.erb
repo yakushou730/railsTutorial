@@ -1,0 +1,11 @@
+<table>
+  <% @parks.each do |park| %>
+    <tr>
+      <td><%= park.parkname %></td>
+      <td><%= park.administrativeArea %></td>
+      <td><%= park.location %></td>
+      <td><%= park.park_type %></td>
+      <td><%#= park.introduction %></td>
+    </tr>
+  <% end %>
+</table>

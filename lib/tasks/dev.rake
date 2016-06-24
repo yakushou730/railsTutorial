@@ -22,4 +22,34 @@ namespace :dev do
 
   end
 
+
+  task :taipei_park => :environment do
+
+    url = "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=8f6fcb24-290b-461d-9d34-72ed1b3f51f0"
+
+    json_string = RestClient.get(url)
+
+    data = JSON.parse(json_string)
+
+    data["result"]["results"].each do |park|
+      existing = Park.find_by_raw_id(park["_id"])
+      if existing
+        existing.update(:raw_id => park["_id"],
+                    :parkname => park["ParkName"],
+                    :administrativeArea => park["AdministrativeArea"],
+                    :location => park["Location"],
+                    :park_type => park["ParkType"],
+                    :introduction => park["Introduction"])
+      else
+        Park.create(:raw_id => park["_id"],
+                    :parkname => park["ParkName"],
+                    :administrativeArea => park["AdministrativeArea"],
+                    :location => park["Location"],
+                    :park_type => park["ParkType"],
+                    :introduction => park["Introduction"])
+      end
+    end
+
+  end
+
 end

@@ -29,6 +29,7 @@ gem 'devise'
 gem 'paperclip'
 gem 'ransack'
 gem 'omniauth-facebook'
+gem 'rest-client'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

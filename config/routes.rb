@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     resources :events
   end
 
+  scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
+    resources :events
+  end
+
   get '/welcome/say_hello' => 'welcome#say'
   get '/welcome' => 'welcome#index'
   get '/something' => 'welcome#something'

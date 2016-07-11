@@ -52,4 +52,27 @@ namespace :dev do
 
   end
 
+  task :diip_mission => :environment do
+
+    url = "http://1575d346.ngrok.io/api/v1/missions"
+    json_string = RestClient.get(url)
+    data = JSON.parse(json_string)
+
+    data["custom_missions"].each do |mission|
+      existing = Mission.find_by_raw_id(mission["mission"]["id"])
+      if existing
+        existing.update(:raw_id => mission["mission"]["id"],
+                    :content => mission["mission"]["content"],
+                    :unlock_level => mission["mission"]["unlock_level"],
+                    :popular => mission["mission"]["popular"])
+      else
+        Mission.create(:raw_id => mission["mission"]["id"],
+                    :content => mission["mission"]["content"],
+                    :unlock_level => mission["mission"]["unlock_level"],
+                    :popular => mission["mission"]["popular"])
+      end
+
+
+    end
+  end
 end

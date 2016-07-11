@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624022620) do
+ActiveRecord::Schema.define(version: 20160711100824) do
 
   create_table "attendees", force: :cascade do |t|
     t.string   "name"
@@ -39,16 +39,12 @@ ActiveRecord::Schema.define(version: 20160624022620) do
     t.text     "description"
     t.boolean  "is_public"
     t.integer  "capacity"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "status"
     t.integer  "category_id"
     t.datetime "start_time"
     t.integer  "user_id"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
   end
 
   add_index "events", ["category_id"], name: "index_events_on_category_id"
@@ -65,6 +61,15 @@ ActiveRecord::Schema.define(version: 20160624022620) do
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "missions", force: :cascade do |t|
+    t.integer  "raw_id"
+    t.text     "content"
+    t.integer  "unlock_level", default: 0
+    t.integer  "popular",      default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "parks", force: :cascade do |t|
@@ -104,8 +109,10 @@ ActiveRecord::Schema.define(version: 20160624022620) do
     t.string   "role"
     t.string   "fb_uid"
     t.string   "fb_token"
+    t.string   "authentication_token"
   end
 
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["fb_uid"], name: "index_users_on_fb_uid"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

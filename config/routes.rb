@@ -25,6 +25,10 @@ Rails.application.routes.draw do
 
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
     resources :events
+
+    post "login" => "auth#login"
+    post "logout" => "auth#logout"
+
   end
 
   get '/welcome/say_hello' => 'welcome#say'

@@ -101,9 +101,9 @@ RSpec.describe "Auth", type: :request do
 
     it "should expire user auth token" do
       old_auth_token = user.authentication_token
-byebug
+
       post "/api/v1/logout", :auth_token => old_auth_token
-byebug
+
       expect(response).to have_http_status(200)
 
       user.reload

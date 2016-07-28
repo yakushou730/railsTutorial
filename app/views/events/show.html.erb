@@ -8,6 +8,8 @@
   None
 <% end %>
 
+<br>
+<%= audio_tag @event.sound.url, controls: "controls", alt: "Please use chrome, ie, or safari", preload: :auto %>
 
 <ul>
   <% @event.groups.each do |group| %>

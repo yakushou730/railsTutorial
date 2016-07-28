@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711100824) do
+ActiveRecord::Schema.define(version: 20160728063718) do
 
   create_table "attendees", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20160711100824) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "attendees", ["event_id"], name: "index_attendees_on_event_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -34,17 +36,28 @@ ActiveRecord::Schema.define(version: 20160711100824) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "event_groupships", ["event_id"], name: "index_event_groupships_on_event_id"
+  add_index "event_groupships", ["group_id"], name: "index_event_groupships_on_group_id"
+
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.boolean  "is_public"
     t.integer  "capacity"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "status"
     t.integer  "category_id"
     t.datetime "start_time"
     t.integer  "user_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "sound_file_name"
+    t.string   "sound_content_type"
+    t.integer  "sound_file_size"
+    t.datetime "sound_updated_at"
   end
 
   add_index "events", ["category_id"], name: "index_events_on_category_id"

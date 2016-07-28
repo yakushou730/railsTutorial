@@ -19,6 +19,14 @@
 </div>
 
 <div class="form-group">
+	<%= f.file_field :sound %>
+	<% if @event.sound.exists? %>
+		<%= check_box_tag "_remove_sound", "1" %> Remove Sound
+	<% end %>
+</div>
+
+
+<div class="form-group">
 	<%= f.label :status, "Status" %>
 	<%= f.select :status, [["Published", "published"], ["Draft", "draft"]], :class => "form-control" %>
 </div>

@@ -63,4 +63,9 @@ class User < ActiveRecord::Base
      user.save!
      return user
    end
+
+   def admin?
+    true
+   end
+
 end

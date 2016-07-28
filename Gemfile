@@ -30,6 +30,11 @@ gem 'paperclip'
 gem 'ransack'
 gem 'omniauth-facebook'
 gem 'rest-client'
+
+
+gem "sidekiq"
+gem "sinatra"
+gem 'whenever', :require => false
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

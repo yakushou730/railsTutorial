@@ -22,6 +22,10 @@ namespace :dev do
 
   end
 
+  task :create_user => :environment do
+    User.create!(:email =>  Faker::Internet.email, :password => "000000")
+  end
+
 
   task :taipei_park => :environment do
 

@@ -1,7 +1,8 @@
 class WelcomeController < ApplicationController
 
 	def index
-
+    #Rails.logger.debug("----- log test -----")
+    #HardWorkerJob.perform_later
 	end
 
 	#GET /welcome/say_hello

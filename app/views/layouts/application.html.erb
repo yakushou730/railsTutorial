@@ -30,7 +30,7 @@
 				<% else %>
 					<%= link_to('registration', new_registration_path(:user)) %> |
 					<%= link_to('log in', new_session_path(:user)) %> |
-					<%= link_to "登入 Facebook", user_omniauth_authorize_path(:facebook) %>
+					<%= link_to "登入 Facebook", user_facebook_omniauth_authorize_path(:facebook) %>
 				<% end %>
 
 				<%= yield %>

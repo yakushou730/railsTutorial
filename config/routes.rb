@@ -35,6 +35,13 @@ Rails.application.routes.draw do
   get '/welcome' => 'welcome#index'
   get '/something' => 'welcome#something'
 
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
+
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
